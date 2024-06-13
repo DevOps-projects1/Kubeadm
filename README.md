@@ -29,21 +29,22 @@ Note: To ensure packets are properly processed by IP tables during filtering and
       EOF
 
 ## Step 5) Applying Kernel Settings Without Reboot.
-    $ sysctl --system
+     $ sysctl --system
 
 ## Step 6) Adding Docker Repository
-   Adding Docker Repository GPG Key to Trusted Keys, so it allows the system to verify the integrity of the downloaded    
-    Docker packages.
+Adding Docker Repository GPG Key to Trusted Keys, so it allows the system to verify the integrity of the downloaded
+Docker packages.
+   
    $ mkdir -m 0755 -p /etc/apt/keyrings
    $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
  ## Step 7) Adding Docker Repository to Ubuntu Package Sources.
-   Adding Docker Repository to Ubuntu Package Sources to enable the system to download and install Docker packages from         the specified repository.
+ Adding Docker Repository to Ubuntu Package Sources to enable the system to download and install Docker packages from         the specified repository.
  (Note: The below is a single command. Please copy and paste the command into a notepad first, then execute it.)
 
- echo \
-"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    echo \
+   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 
 ## Step 8) Install containerd.
