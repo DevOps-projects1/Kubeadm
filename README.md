@@ -104,6 +104,11 @@ This command will check against the node that we have all the required dependenc
 (Note: Run this command in Master Node only.)
 
     $ kubeadm init
+    ![image](https://github.com/DevOps-projects1/Kubeadm/assets/104455878/8b888a85-4286-4a8f-8b79-7dcea7e9085b)
+
+You will see a similar output:
+    ![image](https://github.com/DevOps-projects1/Kubeadm/assets/104455878/a233038e-bfc6-4a18-bc64-310f5e54e117)
+
 
 If cluster initialization has succeeded, then we will see a cluster join command. This command will be used by the worker nodes to join the Kubernetes cluster, so copy this command and save it for the future use.
 
@@ -111,6 +116,8 @@ If cluster initialization has succeeded, then we will see a cluster join command
 
      $ export KUBECONFIG=/etc/kubernetes/admin.conf
      $ echo 'export KUBECONFIG=/etc/kubernetes/admin.conf' >> .bashrc
+     ![image](https://github.com/DevOps-projects1/Kubeadm/assets/104455878/3da0e5b4-7be3-4c05-8fa1-dc7b05c641e6)
+
 
 ## Join Worker Nodes to the Kubernetes Cluster
 Now our Kubernetes master node is set up, we should join Worker nodes to our cluster. Perform the following same steps on all of the worker nodes:
@@ -127,9 +134,13 @@ Note: This is above cluster command, you will get your command in your cluster s
 
 (Note: Don’t use this same command, use the command that you have received and saved while doing kubeadm init command.)
 
+    ![image](https://github.com/DevOps-projects1/Kubeadm/assets/104455878/e1fa9c71-73af-4286-8a12-a2dd7d164328)
+
 If you have forgotten to save the above received kubeadm join command, then you can create a new token and use it for joining worker nodes to the cluster.
 
      $ kubeadm token create --print-join-command
+     ![image](https://github.com/DevOps-projects1/Kubeadm/assets/104455878/916e8d4b-6ddd-4468-a9d4-b20ef16e6945)
+
 
  ## Testing the Kubernetes Cluster
  
@@ -139,14 +150,23 @@ Using Kubectl get nodes command, we can see the status of our Nodes (master and 
 
      $ kubectl get nodes
 
+     ![image](https://github.com/DevOps-projects1/Kubeadm/assets/104455878/2babffe0-e6ed-4b0a-a82f-f716d848ffa8)
+
+
 ## We have to install CNI so that pods can communicate across nodes.
 We have to install CNI so that pods can communicate across nod and also Cluster DNS to start functioning. Apply Weave CNI (Container Network Interface) on the master node.
 
      $ kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
 
+     ![image](https://github.com/DevOps-projects1/Kubeadm/assets/104455878/675213b4-2fe9-4264-9b4e-0cb67757fc0f)
+
+
 Wait for a few minutes and verify the cluster status by executing kubectl command on the master node and see that nodes come to the ready state.
 
      $ kubectl get nodes
+
+     ![image](https://github.com/DevOps-projects1/Kubeadm/assets/104455878/100c3afe-f73d-414b-a757-c1109ef08b73)
+
 
 To verify the status of the system pods like coreDNS, weave-net, Kube-proxy, and all other master node system processes, use the following command:
 
