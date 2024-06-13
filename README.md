@@ -109,8 +109,8 @@ If cluster initialization has succeeded, then we will see a cluster join command
 
 ## Step 2) To start using the cluster, we have to set the environment variable on the master node
 
-    $ export KUBECONFIG=/etc/kubernetes/admin.conf
-    $ echo 'export KUBECONFIG=/etc/kubernetes/admin.conf' >> .bashrc
+     $ export KUBECONFIG=/etc/kubernetes/admin.conf
+     $ echo 'export KUBECONFIG=/etc/kubernetes/admin.conf' >> .bashrc
 
 ## Join Worker Nodes to the Kubernetes Cluster
 Now our Kubernetes master node is set up, we should join Worker nodes to our cluster. Perform the following same steps on all of the worker nodes:
@@ -137,7 +137,7 @@ If you have forgotten to save the above received kubeadm join command, then you 
  
 Using Kubectl get nodes command, we can see the status of our Nodes (master and worker) whether they are ready or not.
 
-    $ kubectl get nodes
+     $ kubectl get nodes
 
 ## We have to install CNI so that pods can communicate across nodes.
 We have to install CNI so that pods can communicate across nod and also Cluster DNS to start functioning. Apply Weave CNI (Container Network Interface) on the master node.
@@ -146,8 +146,11 @@ We have to install CNI so that pods can communicate across nod and also Cluster 
 
 Wait for a few minutes and verify the cluster status by executing kubectl command on the master node and see that nodes come to the ready state.
 
-         $ kubectl get nodes
+     $ kubectl get nodes
 
+To verify the status of the system pods like coreDNS, weave-net, Kube-proxy, and all other master node system processes, use the following command:
 
+    $ kubectl get pods -n kube-system 
 
+ ![image](https://github.com/DevOps-projects1/Kubeadm/assets/104455878/2b68baaa-11d1-4138-9243-79288c73b582)
 
