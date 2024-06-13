@@ -19,8 +19,9 @@ Setup kubernetes cluster using kubeadm
       $ modprobe overlay
       $ modprobe br_netfilter
 ## Step 4) Update Iptables Settings.
-    Note: To ensure packets are properly processed by IP tables during filtering and port forwarding. Set the      
-         net.bridge.bridge-nf-call-iptables to ‘1’ in your sysctl config file.
+Note: To ensure packets are properly processed by IP tables during filtering and port forwarding. Set the      
+ net.bridge.bridge-nf-call-iptables to ‘1’ in your sysctl config file.
+         
     $ tee /etc/sysctl.d/kubernetes.conf<<EOF
       net.bridge.bridge-nf-call-ip6tables = 1
       net.bridge.bridge-nf-call-iptables = 1
