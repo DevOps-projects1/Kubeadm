@@ -10,10 +10,10 @@ Setup kubernetes cluster using kubeadm
     $ sudo -i
 
 # Step 2) Configure persistent loading of modules.
-      tee /etc/modules-load.d/containerd.conf <<EOF
-overlay
-br_netfilter
-EOF
+      tee /etc/modules-load.d/containerd.conf <<EOF 
+      overlay 
+      br_netfilter 
+      EOF
 
  # Step 3) Load at runtime.
       $ modprobe overlay
